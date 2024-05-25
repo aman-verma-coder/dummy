@@ -1,35 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import {useEffect, useState} from 'react';
+import './App.css';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+function App () {
+  const [text, setText] = useState ('');
+  // const [name, setName] = useState ('Aman');
+  // 1 Every Render
+  // useEffect (() => {
+  //   console.log ('UI RENDERING DONE');
+  // });
+  // 2 First Render
+  // useEffect (() => {
+  //   console.log ('UI RENDERING DONE');
+  // }, []);
+  // 3 First Render + Whenever dependency changes
+  // useEffect (
+  //   () => {
+  //     console.log ('UI RENDERING DONE');
+  //   },
+  //   [name]
+  // );
+  // 4 To handle unmounting of a component
+  useEffect (
+    () => {
+      // Add event listener
+      console.log ('Listener Added');
+      return () => {
+        console.log ('Listener Removed');
+      };
+    },
+    [text]
+  );
+  function changeHandler (event) {
+    setText (event.target.value);
+    console.log (text);
+  }
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="App">
+      <input type="text" onChange={changeHandler} />
+    </div>
+  );
 }
 
-export default App
+export default App;
