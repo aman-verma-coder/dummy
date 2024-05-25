@@ -17,7 +17,7 @@ function App () {
   //   () => {
   //     console.log ('UI RENDERING DONE');
   //   },
-  //   [name]
+  //   [text]
   // );
   // 4 To handle unmounting of a component
   useEffect (
